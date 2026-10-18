@@ -128,7 +128,7 @@ def test_session_start_formats_each_runtime_and_honors_the_off_switch(tmp_path: 
     sheet.write_text("# DeepStack model configuration\nsession hook: off\n", encoding="utf-8")
     silenced = subprocess.run([script, "cursor"], check=False, capture_output=True, text=True, env=env)
     assert silenced.returncode == 0
-    assert silenced.stdout == ""
+    assert json.loads(silenced.stdout) == {}
 
     copilot = subprocess.run([script, "copilot"], check=False, capture_output=True, text=True, env=env)
     assert copilot.returncode == 0
@@ -140,6 +140,57 @@ def test_session_start_formats_each_runtime_and_honors_the_off_switch(tmp_path: 
     assert unknown.stdout == ""
 
 
+def test_off_switch_accepts_a_trailing_carriage_return(tmp_path: Path) -> None:
+    script = _PLUGIN / "hooks" / "session-start.sh"
+    home = tmp_path / "home"
+    home.mkdir()
+    env = os.environ.copy()
+    env.update(
+        {
+            "HOME": str(home),
+            "CLAUDE_PLUGIN_ROOT": str(_PLUGIN),
+            "COPILOT_PLUGIN_ROOT": str(_PLUGIN),
+        }
+    )
+
+    def write_sheet(folder: str, body: bytes) -> None:
+        path = home / folder / "deepstack-models.md"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(body)
+
+    def run(runtime: str) -> subprocess.CompletedProcess[str]:
+        return subprocess.run(
+            [script, runtime], check=False, capture_output=True, text=True, env=env
+        )
+
+    write_sheet(".cursor", b"# note\r\nsession hook: off\r\n")
+    cursor_off = run("cursor")
+    assert cursor_off.returncode == 0
+    assert json.loads(cursor_off.stdout) == {}
+
+    write_sheet(".claude", b"altitude: inherit-parent\nsession hook: off\r\n")
+    claude_off = run("claude")
+    assert claude_off.returncode == 0
+    assert claude_off.stdout == ""
+
+    write_sheet(".claude", b"Session hook: off\n")
+    claude_on = run("claude")
+    assert claude_on.returncode == 0
+    assert claude_on.stdout.startswith("DeepStack:")
+
+    write_sheet(".copilot", b"session hook: off\r\n")
+    copilot_off = run("copilot")
+    assert copilot_off.returncode == 0
+    assert copilot_off.stdout == ""
+
+    write_sheet(".cursor", b"session hook: off please\n")
+    cursor_near = run("cursor")
+    assert cursor_near.returncode == 0
+    payload = json.loads(cursor_near.stdout)
+    assert "additional_context" in payload
+    assert payload["additional_context"].startswith("DeepStack:")
+
+
 def test_windows_hook_passes_the_runtime_and_the_off_switch() -> None:
     codex_hooks = json.loads((_PLUGIN / "hooks" / "codex-hooks.json").read_text(encoding="utf-8"))
     command_windows = codex_hooks["hooks"]["SessionStart"][0]["hooks"][0]["commandWindows"]
@@ -147,6 +198,8 @@ def test_windows_hook_passes_the_runtime_and_the_off_switch() -> None:
     assert command_windows.endswith(" codex")
     script = (_PLUGIN / "hooks" / "session-start.ps1").read_text(encoding="utf-8")
     assert "session hook: off" in script
+    assert '.TrimEnd("`r")' in script
+    assert "Write-Output '{}'" in script
     assert "additional_context" in script
     assert "additionalContext" in script
     assert "unknown runtime" in script

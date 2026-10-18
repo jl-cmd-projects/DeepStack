@@ -23,7 +23,11 @@ case "$runtime" in
     exit 2
     ;;
 esac
-if [ -f "$sheet" ] && grep -qx 'session hook: off' "$sheet"; then
+# Drop carriage returns so a Windows line matches. grep -x would keep one and miss.
+if [ -f "$sheet" ] && tr -d '\r' < "$sheet" | grep -qx 'session hook: off'; then
+  if [ "$runtime" = cursor ]; then
+    printf '%s\n' '{}'
+  fi
   exit 0
 fi
 json_escape() {
