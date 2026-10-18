@@ -1,0 +1,33 @@
+{
+  "name": "deepstack",
+  "version": "0.1.0",
+  "description": "DeepStack raises a task in altitude, depth, and range. Skills are shared. Tool names resolve through skills/deepstack-mode/references/runtimes.md.",
+  "license": "MIT",
+  "homepage": "https://github.com/jl-cmd-projects/DeepStack",
+  "repository": "https://github.com/jl-cmd-projects/DeepStack",
+  "keywords": [
+    "deepstack",
+    "altitude",
+    "depth",
+    "range"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/codex-hooks.json",
+  "interface": {
+    "displayName": "DeepStack",
+    "shortDescription": "Raise the task in altitude, depth, and range, then prove it.",
+    "longDescription": "DeepStack guides a first task through an outcome above the task, the methods a top person in the field would use, and fields the noun was hiding. A done claim needs an outside judge.",
+    "developerName": "DeepStack",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Work on this in DeepStack.",
+      "Raise this task to the outcome, then prove it."
+    ],
+    "brandColor": "#0F766E"
+  }
+}
