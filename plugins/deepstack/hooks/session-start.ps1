@@ -57,7 +57,10 @@ switch ($Runtime) {
 
 if (Test-Path -LiteralPath $script:sheet) {
     foreach ($line in Get-Content -LiteralPath $script:sheet) {
-        if ($line -ceq "session hook: off") {
+        if ($line.TrimEnd("`r") -ceq "session hook: off") {
+            if ($Runtime -eq "cursor") {
+                Write-Output '{}'
+            }
             exit 0
         }
     }
