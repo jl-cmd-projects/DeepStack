@@ -1,0 +1,13 @@
+{
+  "name": "DeepStack",
+  "metadata": {
+    "description": "DeepStack raises a task in altitude, depth, and range, then proves the result."
+  },
+  "plugins": [
+    {
+      "name": "deepstack",
+      "source": "plugins/deepstack",
+      "description": "DeepStack raises a task in altitude, depth, and range, then proves the result."
+    }
+  ]
+}

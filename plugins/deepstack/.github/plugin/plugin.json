@@ -1,0 +1,14 @@
+{
+  "name": "deepstack",
+  "displayName": "DeepStack",
+  "version": "0.1.0",
+  "description": "DeepStack raises a task in altitude, depth, and range, then proves the result.",
+  "license": "MIT",
+  "homepage": "https://github.com/jl-cmd-projects/DeepStack",
+  "repository": "https://github.com/jl-cmd-projects/DeepStack",
+  "keywords": [
+    "deepstack",
+    "skills"
+  ],
+  "hooks": "hooks/copilot-hooks.json"
+}

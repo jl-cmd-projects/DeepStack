@@ -1,0 +1,21 @@
+{
+  "name": "DeepStack",
+  "interface": {
+    "displayName": "DeepStack"
+  },
+  "plugins": [
+    {
+      "name": "deepstack",
+      "source": {
+        "source": "local",
+        "path": "./plugins/deepstack"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL",
+        "products": ["CODEX"]
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

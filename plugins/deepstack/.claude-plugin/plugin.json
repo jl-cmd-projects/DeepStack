@@ -1,0 +1,30 @@
+{
+  "name": "deepstack",
+  "displayName": "DeepStack",
+  "version": "0.1.0",
+  "description": "DeepStack raises a task in altitude, depth, and range, then proves the result. Principles follow Felix Rieseberg, How to be more ambitious: A tutorial for humans with models (13 October 2026). The article is all rights reserved. This plugin states them in its own words.",
+  "license": "MIT",
+  "homepage": "https://github.com/jl-cmd-projects/DeepStack",
+  "repository": "https://github.com/jl-cmd-projects/DeepStack",
+  "keywords": [
+    "deepstack",
+    "altitude",
+    "depth",
+    "range",
+    "ambition",
+    "skills"
+  ],
+  "agents": [
+    "./agents/deepstack-agent.md",
+    "./effort-agents/effort-low.md",
+    "./effort-agents/effort-medium.md",
+    "./effort-agents/effort-high.md",
+    "./effort-agents/effort-xhigh.md",
+    "./effort-agents/effort-max.md",
+    "./effort-agents/deepstack-agent-low.md",
+    "./effort-agents/deepstack-agent-medium.md",
+    "./effort-agents/deepstack-agent-high.md",
+    "./effort-agents/deepstack-agent-xhigh.md",
+    "./effort-agents/deepstack-agent-max.md"
+  ]
+}
