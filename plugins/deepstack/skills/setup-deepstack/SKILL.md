@@ -13,6 +13,4 @@ Write the current runtime's model sheet. The sheet shape is in [model-sheet](../
 2. If the sheet exists, read it. Otherwise start from the shape in the model-sheet reference.
 3. Show each role and ask the user to accept or change it. Ask for the default effort: `session`, or one of `low`, `medium`, `high`, `xhigh`, `max`.
 4. Ask whether the session hook stays on. The default is on. `session hook: off` stops the injection.
-5. Write the whole sheet again so a second run leaves the same file.
-
-On Claude Code the config directory is `$CLAUDE_CONFIG_DIR` when set, and `~/.claude` otherwise. The sheet is `deepstack-models.md` in that directory. Codex uses `$CODEX_HOME` or `~/.codex`. Copilot uses `$COPILOT_HOME` or `~/.copilot`.
+5. Write the whole sheet again so a second run leaves the same file. The runtime directory for that file is in the runtimes reference.

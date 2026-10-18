@@ -26,9 +26,16 @@ esac
 if [ -f "$sheet" ] && grep -qx 'session hook: off' "$sheet"; then
   exit 0
 fi
+json_escape() {
+  printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g' | awk 'BEGIN { ORS = "" } { if (NR > 1) printf "\\n"; printf "%s", $0 }'
+}
+
 mandate="DeepStack: on a first task, read ${root}/skills/deepstack-mode/SKILL.md and follow it."
+escaped="$(json_escape "$mandate")"
 if [ "$runtime" = copilot ]; then
-  printf '%s\n' "{\"additionalContext\": \"${mandate}\"}"
+  printf '%s\n' "{\"additionalContext\": \"${escaped}\"}"
+elif [ "$runtime" = cursor ]; then
+  printf '%s\n' "{\"additional_context\": \"${escaped}\"}"
 else
   printf '%s\n' "$mandate"
 fi

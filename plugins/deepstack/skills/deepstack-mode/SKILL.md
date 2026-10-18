@@ -62,7 +62,7 @@ Copy the matched playbook's steps into the todo list before task-specific items.
 
 ## Subagents
 
-Spawn `deepstack-agent` for a helper. The chat that received the mode runs the playbook. Read [the delegate](../../../agents/deepstack-agent.md). Give new work to a fresh agent. Resume one only when it still holds a checkout or a live process.
+Spawn `deepstack-agent` for a helper. The chat that received the mode runs the playbook. Read [the delegate](../../agents/deepstack-agent.md). Give new work to a fresh agent. Resume one only when it still holds a checkout or a live process.
 
 ## Models
 

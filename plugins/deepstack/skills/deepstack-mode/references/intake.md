@@ -19,4 +19,4 @@ Then answer four things, in your own sentences:
 
 Rewrite the task deeper, at the same size. Put `CDE_DEEPEN:v1` on line 1. Carry the `SCOPE (role):` line in the worker prompt verbatim.
 
-The gate `hooks/session/deepen_role_gate.py` refuses a rewrite that pastes the four question stems, a rewrite whose scope line contains an example noun while `ZOOM-IN BLOCKER:` is `none`, and a rewrite that drops or loosens a hard constraint. Keep every hard constraint word for word, each on its own line.
+A rewrite is refused when it pastes the four question stems, when the scope line contains an example noun while `ZOOM-IN BLOCKER:` is `none`, or when it drops or loosens a hard constraint. Keep every hard constraint word for word, each on its own line.
