@@ -5,6 +5,6 @@ description: "Raise a task to the outcome above it. Use for /altitude or a goal 
 
 # altitude
 
-Name the goal beyond the goal, then follow the altitude playbook.
+Name the outcome above the task, then follow the altitude playbook.
 
-Follow [the playbook](../deepstack-mode/playbooks/altitude.md) and read [principle-goal-beyond-the-goal](../principle-goal-beyond-the-goal/SKILL.md) before you apply it.
+Follow [the playbook](../deepstack-mode/playbooks/altitude.md) and read [principle-outcome-above-the-task](../principle-outcome-above-the-task/SKILL.md) before you apply it.

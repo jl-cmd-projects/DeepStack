@@ -5,9 +5,9 @@ description: "Raise a task in altitude, depth, and range, then prove it. Use for
 
 # DeepStack mode
 
-Bundled skills live at `../<name>/SKILL.md` from this file. The cited article and the one allowed quote are in [source](references/source.md).
+Bundled skills live at `../<name>/SKILL.md` from this file. The citation and the four questions are in [source](references/source.md).
 
-Speed is the same work in less time. DeepStack leaves that kind alone. The work here is altitude, depth, and range. Read [principle-speed-is-settled](../principle-speed-is-settled/SKILL.md) when a request is only about going faster.
+Speed is finishing work you already planned, only faster. DeepStack leaves that kind alone. The work here is altitude, depth, and range. Read [principle-speed-is-settled](../principle-speed-is-settled/SKILL.md) when a request is only about going faster.
 
 ## When it runs
 
@@ -31,7 +31,7 @@ Skip when the prompt already carries `CDE_DEEPEN:v1`, when the text is thanks or
 Read the leaf before you apply it.
 
 - [Speed is settled](../principle-speed-is-settled/SKILL.md)
-- [Goal beyond the goal](../principle-goal-beyond-the-goal/SKILL.md)
+- [Outcome above the task](../principle-outcome-above-the-task/SKILL.md)
 - [Same instruments](../principle-same-instruments/SKILL.md)
 - [Unreasonable and solvable](../principle-unreasonable-and-solvable/SKILL.md)
 - [Challenge from raw data](../principle-challenge-from-raw-data/SKILL.md)

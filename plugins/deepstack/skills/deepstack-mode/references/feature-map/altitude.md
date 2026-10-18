@@ -4,9 +4,9 @@ Aim at the outcome the task is a guess at.
 
 ## Sub-features
 
-- goal-beyond: name what should happen next.
+- outcome-above: name what should happen next.
 - decisions: the few choices that matter, with the case each way.
-- better-mechanism: a way to serve the outcome, checked against history, run beside the current way for one cycle.
+- better-mechanism: a way to serve the outcome, checked against history, tried next to the old way for one cycle.
 - durable-loop: the access a person-out-of-the-loop workflow needs first.
 
 ## How to get to it (user POV)
@@ -19,7 +19,7 @@ Aim at the outcome the task is a guess at.
 
 Preconditions: a task whose success is an outcome in the world.
 
-- User asks for the next outcome. Open [principle-goal-beyond-the-goal](../../../principle-goal-beyond-the-goal/SKILL.md). Result: one sentence naming that outcome.
+- User asks for the next outcome. Open [principle-outcome-above-the-task](../../../principle-outcome-above-the-task/SKILL.md). Result: one sentence naming that outcome.
 - User wants the loop to keep running. Open [durable-loop](../../playbooks/durable-loop.md). Result: a list of records, a version map, and a place to reproduce the check.
 
 ## Gotchas
