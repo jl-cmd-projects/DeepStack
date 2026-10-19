@@ -9,7 +9,7 @@ Answer the question and link the file the answer came from. For a help question,
 
 A message that asks for the work itself is not a help question. Read [deepstack-mode](../deepstack-mode/SKILL.md) and do the work under it.
 
-DeepStack ships one skill. A first task runs [the full run](../deepstack-mode/playbooks/full-run.md), which covers every axis below.
+DeepStack does its work in one skill, `deepstack-mode`. A first task runs [the full run](../deepstack-mode/playbooks/full-run.md), which covers every axis below.
 
 | The user wants to | Playbook |
 |---|---|
