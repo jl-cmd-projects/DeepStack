@@ -1,6 +1,6 @@
 {
   "name": "deepstack",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "DeepStack raises a task in altitude, depth, and range. Skills are shared. Tool names resolve through skills/deepstack-mode/references/runtimes.md.",
   "license": "MIT",
   "homepage": "https://github.com/jl-cmd-projects/DeepStack",

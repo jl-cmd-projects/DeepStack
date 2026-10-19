@@ -1,7 +1,7 @@
 {
   "name": "deepstack",
   "displayName": "DeepStack",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "DeepStack raises a task in altitude, depth, and range, then proves the result.",
   "license": "MIT",
   "homepage": "https://github.com/jl-cmd-projects/DeepStack",
