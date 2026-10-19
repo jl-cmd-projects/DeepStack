@@ -1,5 +1,8 @@
 {
   "name": "DeepStack",
+  "owner": {
+    "name": "jl-cmd"
+  },
   "description": "DeepStack raises a task in altitude, depth, and range, then proves the result.",
   "plugins": [
     {

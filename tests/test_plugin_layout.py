@@ -261,3 +261,10 @@ def test_tree_does_not_carry_article_passages() -> None:
         found.update(_fingerprints(text, 6))
         found.update(_fingerprints(text, 8))
     assert not found & _ARTICLE_FINGERPRINTS
+
+
+def test_claude_marketplace_names_its_owner() -> None:
+    market = json.loads((_ROOT / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
+    assert market["name"]
+    assert market["owner"]["name"]
+    assert market["plugins"]

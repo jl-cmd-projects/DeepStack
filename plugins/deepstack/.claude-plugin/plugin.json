@@ -3,6 +3,9 @@
   "displayName": "DeepStack",
   "version": "0.1.0",
   "description": "DeepStack raises a task in altitude, depth, and range, then proves the result. Principles follow Felix Rieseberg, How to be more ambitious: A tutorial for humans with models (13 October 2026). The article is all rights reserved. This plugin states them in its own words.",
+  "author": {
+    "name": "jl-cmd"
+  },
   "license": "MIT",
   "homepage": "https://github.com/jl-cmd-projects/DeepStack",
   "repository": "https://github.com/jl-cmd-projects/DeepStack",
