@@ -300,3 +300,9 @@ def test_should_run_every_axis_on_a_first_task() -> None:
     for each_playbook in ("self-efficacy", "altitude", "depth", "range", "outside-judge"):
         assert f"`playbooks/{each_playbook}.md`" in full_run, each_playbook
     assert "references/trust-card.md" in full_run
+
+
+def test_should_name_only_shipped_skills_in_model_roles() -> None:
+    roles = json.loads((_PLUGIN / "models.json").read_text(encoding="utf-8"))["roles"]
+    shipped = {each.name for each in (_PLUGIN / "skills").iterdir() if each.is_dir()}
+    assert {each["skill"] for each in roles} <= shipped
