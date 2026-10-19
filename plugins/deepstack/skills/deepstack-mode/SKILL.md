@@ -1,6 +1,6 @@
 ---
 name: deepstack-mode
-description: "Raise a task in altitude, depth, and range, then prove it. Use for DeepStack, /deepstack-mode, /deepen plus a task, or a first task."
+description: "Raise a task in altitude, depth, and range, then prove it. Use for DeepStack, /deepstack-mode, or a first task."
 ---
 
 # DeepStack mode
@@ -11,16 +11,16 @@ Speed is finishing work you already planned, only faster. DeepStack leaves that 
 
 ## When it runs
 
-On a first task, `/deepen` plus a task, `/deepstack-mode`, or a routine wake that has work, write the three lines and the worker prompt in [intake](references/intake.md) before any plan. The deepening pass writes that prompt and stops. The worker runs it.
+On a first task, `/deepstack-mode`, or a routine wake that has work, open [the full run](playbooks/full-run.md) and follow it before any plan. The same session does the work.
 
-Skip when the prompt already carries `CDE_DEEPEN:v1`, when the text is thanks or a yes/no or a status line, when it is a slash command other than `/deepen`, or when it is a helper report.
+Skip when the text is thanks or a yes/no or a status line, when it is another slash command, or when it is a helper report.
 
 ## Remaining triggers
 
-- The outcome sits above the task. Open [altitude](../altitude/SKILL.md).
-- The task should be done the way a top person in the field would do it. Open [depth](../depth/SKILL.md).
-- The noun is hiding other fields. Open [range](../range/SKILL.md).
-- A claim that the work is done. Open [trust-card](references/trust-card.md) and [outside-judge](../outside-judge/SKILL.md).
+- The outcome sits above the task. Open [altitude](playbooks/altitude.md).
+- The task should be done the way a top person in the field would do it. Open [depth](playbooks/depth.md).
+- The noun is hiding other fields. Open [range](playbooks/range.md).
+- A claim that the work is done. Open [trust-card](references/trust-card.md) and [outside-judge](playbooks/outside-judge.md).
 - The work is stuck. Open [stuck](references/stuck.md).
 - A new rule, hook, or skill. Open [archive-trigger](references/archive-trigger.md).
 - A search before a build. Open [search](references/search.md).
@@ -49,6 +49,7 @@ Read the leaf before you apply it.
 
 Copy the matched playbook's steps into the todo list before task-specific items. A skipped step stays, with `skip: <reason>`.
 
+- [Full run](playbooks/full-run.md)
 - [Altitude](playbooks/altitude.md)
 - [Depth](playbooks/depth.md)
 - [Instruments](playbooks/instruments.md)
