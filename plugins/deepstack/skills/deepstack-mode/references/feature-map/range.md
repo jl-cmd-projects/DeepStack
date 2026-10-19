@@ -10,7 +10,7 @@ Bring in fields the surface task does not name.
 
 ## How to get to it (user POV)
 
-- `/range`, or a task whose name is an artifact ("a deck", "a report", "a fix").
+- A first task, `/deepstack-mode`, the range playbook, or a task whose name is an artifact ("a deck", "a report", "a fix").
 - The user wants several kinds of expertise on one job.
 
 ## Driving it with the DeepStack skills

@@ -13,7 +13,7 @@ Aim at the outcome the task is a guess at.
 
 - The user asks what they want to happen, past the single task.
 - The user expects a meeting about the work.
-- `/altitude` or the altitude playbook.
+- A first task, `/deepstack-mode`, or the altitude playbook.
 
 ## Driving it with the DeepStack skills
 

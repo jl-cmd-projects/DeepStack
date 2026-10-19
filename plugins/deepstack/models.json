@@ -19,17 +19,17 @@
     {
       "role": "altitude",
       "models": "default",
-      "skill": "altitude"
+      "skill": "deepstack-mode"
     },
     {
       "role": "depth",
       "models": "default",
-      "skill": "depth"
+      "skill": "deepstack-mode"
     },
     {
       "role": "range",
       "models": "default",
-      "skill": "range"
+      "skill": "deepstack-mode"
     },
     {
       "role": "judgment and prose",

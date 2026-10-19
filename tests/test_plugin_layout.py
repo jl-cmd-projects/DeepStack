@@ -268,3 +268,41 @@ def test_claude_marketplace_names_its_owner() -> None:
     assert market["name"]
     assert market["owner"]["name"]
     assert market["plugins"]
+
+
+def test_should_ship_one_entry_skill_with_its_helpers() -> None:
+    skill_names = {
+        each.name
+        for each in (_PLUGIN / "skills").iterdir()
+        if each.is_dir() and not each.name.startswith("principle-")
+    }
+    assert skill_names == {"deepstack-mode", "deepstack-help", "setup-deepstack"}
+    prompt_names = {each.stem for each in (_PLUGIN / ".codex-plugin" / "prompts").glob("*.md")}
+    assert prompt_names == skill_names
+
+
+def test_should_name_no_deepen_pass_anywhere() -> None:
+    for path in _ROOT.rglob("*"):
+        if not path.is_file() or ".git" in path.parts or path.suffix not in {".md", ".json"}:
+            continue
+        text = path.read_text(encoding="utf-8")
+        assert "/deepen" not in text, path
+        assert "CDE_DEEPEN" not in text, path
+        assert "worker prompt" not in text, path
+
+
+def test_should_run_every_axis_on_a_first_task() -> None:
+    skill_text = (_PLUGIN / "skills" / "deepstack-mode" / "SKILL.md").read_text(encoding="utf-8")
+    assert "playbooks/full-run.md" in skill_text
+    full_run = (_PLUGIN / "skills" / "deepstack-mode" / "playbooks" / "full-run.md").read_text(
+        encoding="utf-8"
+    )
+    for each_playbook in ("self-efficacy", "altitude", "depth", "range", "outside-judge"):
+        assert f"`playbooks/{each_playbook}.md`" in full_run, each_playbook
+    assert "references/trust-card.md" in full_run
+
+
+def test_should_name_only_shipped_skills_in_model_roles() -> None:
+    roles = json.loads((_PLUGIN / "models.json").read_text(encoding="utf-8"))["roles"]
+    shipped = {each.name for each in (_PLUGIN / "skills").iterdir() if each.is_dir()}
+    assert {each["skill"] for each in roles} <= shipped
