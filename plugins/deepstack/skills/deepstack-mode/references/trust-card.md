@@ -2,7 +2,7 @@
 
 A claim that work is done carries these seven lines.
 
-1. Original ask listed part by part, each part met with its evidence or marked Open.
+1. Original ask listed part by part, each part met with its evidence or marked Open. A part whose consumer runs only after the merge stays Open until that run finishes and its output is read. A stubbed run before the merge does not close it.
 2. Symptom quoted.
 3. Oracle in a file the change does not edit.
 4. Visible outcome.
