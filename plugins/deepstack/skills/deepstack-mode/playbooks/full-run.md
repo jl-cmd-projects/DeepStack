@@ -9,6 +9,6 @@ Every first task runs this playbook. It bakes each axis into the plan, then does
 5. Widen the crew with `playbooks/range.md`. Turn each noun into its verb and list the fields that do that work.
 6. Name the grader with `playbooks/outside-judge.md` before the work starts.
 7. Put the outcome, the hard goal, the instruments, the crew, and the judge in the todo list. Then do the work.
-8. A done claim carries the six lines in `references/trust-card.md`.
+8. A done claim carries the seven lines in `references/trust-card.md`.
 
 An axis that adds nothing to this task stays in the todo list with `skip: <reason>`.
