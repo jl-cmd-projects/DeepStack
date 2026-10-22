@@ -10,6 +10,8 @@ ZOOM-IN BLOCKER: <why the standing job cannot be done now, or none>
 
 Scope is the standing job that would have handled the ask with no one requesting it. Examples are illustration. Zoom in only with a named blocker.
 
+When the ask names a class, such as "all" or "other agents", each member is in scope, even one whose current code makes its wiring look redundant. Ask the user before you drop a member.
+
 Then answer four things, in your own sentences:
 
 1. What a top person in that field would do that this task left out.
