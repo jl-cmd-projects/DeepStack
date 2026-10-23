@@ -8,8 +8,7 @@
     {
       "name": "deepstack",
       "source": "./plugins/deepstack",
-      "description": "DeepStack raises a task in altitude, depth, and range, then proves the result. Principles follow Felix Rieseberg, How to be more ambitious: A tutorial for humans with models, in this plugin's own words.",
-      "version": "0.2.0"
+      "description": "DeepStack raises a task in altitude, depth, and range, then proves the result. Principles follow Felix Rieseberg, How to be more ambitious: A tutorial for humans with models, in this plugin's own words."
     }
   ]
 }
