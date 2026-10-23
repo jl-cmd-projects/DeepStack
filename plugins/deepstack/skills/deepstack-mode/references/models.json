@@ -1,0 +1,40 @@
+{
+  "tiers": {
+    "default": "inherit-parent",
+    "strongest": "inherit-parent",
+    "worker": "inherit-parent"
+  },
+  "efforts": [
+    "low",
+    "medium",
+    "high",
+    "xhigh",
+    "max"
+  ],
+  "defaultEffort": "session",
+  "available": [
+    "inherit-parent"
+  ],
+  "roles": [
+    {
+      "role": "altitude",
+      "models": "default",
+      "skill": "deepstack-mode"
+    },
+    {
+      "role": "depth",
+      "models": "default",
+      "skill": "deepstack-mode"
+    },
+    {
+      "role": "range",
+      "models": "default",
+      "skill": "deepstack-mode"
+    },
+    {
+      "role": "judgment and prose",
+      "models": "default",
+      "skill": "deepstack-mode"
+    }
+  ]
+}

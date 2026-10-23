@@ -2,6 +2,9 @@
   "name": "deepstack",
   "version": "0.2.0",
   "description": "DeepStack raises a task in altitude, depth, and range. Skills are shared. Tool names resolve through skills/deepstack-mode/references/runtimes.md.",
+  "author": {
+    "name": "jl-cmd"
+  },
   "license": "MIT",
   "homepage": "https://github.com/jl-cmd-projects/DeepStack",
   "repository": "https://github.com/jl-cmd-projects/DeepStack",
@@ -28,6 +31,8 @@
       "Work on this in DeepStack.",
       "Raise this task to the outcome, then prove it."
     ],
-    "brandColor": "#0F766E"
+    "brandColor": "#0F766E",
+    "composerIcon": "./assets/deepstack.svg",
+    "logo": "./assets/deepstack.svg"
   }
 }

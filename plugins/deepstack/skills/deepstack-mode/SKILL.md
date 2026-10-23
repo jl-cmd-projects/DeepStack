@@ -63,11 +63,11 @@ Copy the matched playbook's steps into the todo list before task-specific items.
 
 ## Subagents
 
-Spawn `deepstack-agent` for a helper. The chat that received the mode runs the playbook. Read [the delegate](../../agents/deepstack-agent.md). Give new work to a fresh agent. Resume one only when it still holds a checkout or a live process.
+Spawn `deepstack-agent` for a helper. The chat that received the mode runs the playbook. Read [the delegate](references/deepstack-agent.md). Give new work to a fresh agent. Resume one only when it still holds a checkout or a live process.
 
 ## Models
 
-Role defaults live in [models.json](../../models.json). `/setup-deepstack` writes the override sheet. A role with no line runs on the parent session's model.
+Role defaults live in [models.json](references/models.json). `/setup-deepstack` writes the override sheet. A role with no line runs on the parent session's model.
 
 ## Replacements
 
