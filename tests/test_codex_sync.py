@@ -129,6 +129,17 @@ class CodexSyncTests(unittest.TestCase):
         self.assertEqual({str(self.destination / "deepstack"): first["revision"],
                           str(second_destination / "deepstack"): second["revision"]}, by_destination)
 
+    def test_shallow_cache_migrates_to_complete_history(self):
+        self.state.mkdir(parents=True)
+        cache = str(self.state / "repository.git")
+        MODULE.git("init", "--bare", cache)
+        MODULE.git("-C", cache, "remote", "add", "origin", str(self.repository))
+        MODULE.git("-C", cache, "fetch", "--depth=1", "origin", "HEAD")
+        self.assertEqual("true", MODULE.git("-C", cache, "rev-parse", "--is-shallow-repository"))
+        first = self.sync()
+        self.assertEqual("false", MODULE.git("-C", cache, "rev-parse", "--is-shallow-repository"))
+        self.assertEqual(first, self.sync())
+
     def test_interruption_after_revision_switch_leaves_no_broken_links(self):
         self.sync()
         shutil.rmtree(self.plugin / "skills/principle-room-to-miss")

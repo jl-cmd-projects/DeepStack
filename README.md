@@ -22,7 +22,9 @@ or `~/.codex/skills` when `CODEX_HOME` is unset. It preserves Codex configuratio
 credentials, and hook trust. Git and Python 3.10 or later are required.
 
 Updates follow commit changes, including commits that leave the plugin version
-unchanged. Each runtime has one `deepstack` entry that points to a complete,
+unchanged. The Git cache keeps complete branch history and converts existing
+shallow caches on the next successful fetch. Each runtime has one `deepstack`
+entry that points to a complete,
 immutable plugin directory. An atomic replacement updates that entry and preserves
 relative references. Each runtime retains its own revision and installation
 receipt. Synchronizing another runtime leaves existing installations in place.

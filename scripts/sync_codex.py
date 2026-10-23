@@ -37,7 +37,8 @@ def sync(repository: str, state: Path, destinations: list[Path]) -> dict:
             git("-C", str(cache), "remote", "add", "origin", repository)
         if git("-C", str(cache), "remote", "get-url", "origin") != repository:
             raise ValueError("State directory belongs to another repository")
-        git("-C", str(cache), "fetch", "--depth=1", "origin", "HEAD")
+        fetch_options = ["--unshallow"] if git("-C", str(cache), "rev-parse", "--is-shallow-repository") == "true" else []
+        git("-C", str(cache), "fetch", *fetch_options, "origin", "HEAD")
         revision = git("-C", str(cache), "rev-parse", "FETCH_HEAD")
         generation = state / "revisions" / revision
         if not generation.exists():
