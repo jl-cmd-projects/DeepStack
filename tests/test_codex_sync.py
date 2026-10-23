@@ -229,7 +229,10 @@ print(json.dumps(counter[0]))
                 for link in destination.rglob("*"):
                     if link.is_symlink():
                         self.assertTrue(link.exists(), str(link))
-                MODULE.sync(str(self.repository), state, [destination])
+                try:
+                    MODULE.sync(str(self.repository), state, [destination])
+                except subprocess.CalledProcessError as error:
+                    self.fail(error.stderr)
                 self.assertTrue(self.installed("new-skill", destination).is_file())
                 self.assertFalse(self.installed("principle-room-to-miss", destination).exists())
             boundary += 1
