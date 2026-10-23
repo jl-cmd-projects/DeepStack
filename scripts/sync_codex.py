@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import argparse
 import fcntl
+import hashlib
 import json
 import os
 from pathlib import Path
-import shutil
 import subprocess
 import tempfile
 
@@ -46,40 +46,54 @@ def sync(repository: str, state: Path, destinations: list[Path]) -> dict:
                 staging = Path(temporary)
                 git("--work-tree=" + str(staging), "--git-dir=" + str(cache),
                     "checkout", revision, "--", "plugins/deepstack")
-                shutil.move(str(staging / "plugins" / "deepstack"), generation)
-        skills = generation / "skills"
-        names = sorted(path.name for path in skills.iterdir() if (path / "SKILL.md").is_file())
-        if "deepstack-mode" not in names or "deepstack-help" not in names:
-            raise ValueError("Fetched repository lacks the DeepStack entry skills")
-        manifest = state / "installation.json"
-        previous = json.loads(manifest.read_text()) if manifest.exists() else {"links": []}
-        destinations = list(dict.fromkeys(path.expanduser().absolute() for path in destinations))
-        links = [path / name for path in destinations for name in names]
-        current = state / "current"
-        for link in links:
-            expected = current / "skills" / link.name
-            if link.is_symlink() and os.readlink(link) == str(expected):
-                continue
-            if link.exists() or link.is_symlink():
-                raise FileExistsError(f"Unmanaged skill already exists: {link}")
-        temporary_link = state / "current.next"
-        temporary_link.unlink(missing_ok=True)
-        temporary_link.symlink_to(generation, target_is_directory=True)
-        temporary_link.replace(current)
-        for link in links:
-            link.parent.mkdir(parents=True, exist_ok=True)
-            if not link.is_symlink():
-                link.symlink_to(current / "skills" / link.name, target_is_directory=True)
-        for old in map(Path, previous["links"]):
-            if old not in links and old.is_symlink() and os.readlink(old) == str(current / "skills" / old.name):
-                old.unlink()
+                plugin = staging / "plugins/deepstack"
+                skill_names(plugin)
+                plugin.rename(generation)
+        names = skill_names(generation)
+        destinations = list(dict.fromkeys(path.expanduser().resolve() for path in destinations))
+        for destination in destinations:
+            entry = destination / "deepstack"
+            if entry.is_symlink():
+                if Path(os.readlink(entry)).parent != state / "revisions":
+                    raise FileExistsError(f"Unmanaged installation already exists: {entry}")
+            elif entry.exists():
+                raise FileExistsError(f"Unmanaged installation already exists: {entry}")
+            for name in names:
+                flat_entry = destination / name
+                if (flat_entry.exists() or flat_entry.is_symlink()) and not legacy_link(flat_entry, state):
+                    raise FileExistsError(f"Unmanaged skill already exists: {flat_entry}")
         receipt = {"repository": repository, "revision": revision,
-                   "skills": names, "links": list(map(str, links)),
+                   "skills": names, "links": [str(path / "deepstack") for path in destinations],
                    "cloud_catalog_verified": False, "fresh_cloud_session_verified": False}
-        pending = manifest.with_suffix(".next")
-        pending.write_text(json.dumps(receipt, indent=2) + "\n")
-        pending.replace(manifest)
+        for destination in destinations:
+            destination.mkdir(parents=True, exist_ok=True)
+            entry = destination / "deepstack"
+            with tempfile.TemporaryDirectory(prefix=".deepstack-", dir=destination) as temporary:
+                pending = Path(temporary) / "entry"
+                pending.symlink_to(generation, target_is_directory=True)
+                pending.replace(entry)
+            for old in destination.iterdir():
+                if legacy_link(old, state):
+                    old.unlink()
+            manifests = state / "installations"
+            manifests.mkdir(exist_ok=True)
+            key = hashlib.sha256(os.fsencode(str(destination))).hexdigest()
+            manifest = manifests / (key + ".json")
+            pending_receipt = manifest.with_suffix(".next")
+            pending_receipt.write_text(json.dumps({**receipt, "links": [str(entry)]}, indent=2) + "\n")
+            pending_receipt.replace(manifest)
         return receipt
+
+
+def skill_names(plugin: Path) -> list[str]:
+    names = sorted(path.name for path in (plugin / "skills").iterdir() if (path / "SKILL.md").is_file())
+    if "deepstack-mode" not in names or "deepstack-help" not in names:
+        raise ValueError("Fetched repository lacks the DeepStack entry skills")
+    return names
+
+
+def legacy_link(path: Path, state: Path) -> bool:
+    return path.is_symlink() and os.readlink(path) == str(state / "current/skills" / path.name)
 
 
 def main() -> None:

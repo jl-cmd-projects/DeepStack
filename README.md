@@ -22,10 +22,22 @@ or `~/.codex/skills` when `CODEX_HOME` is unset. It preserves Codex configuratio
 credentials, and hook trust. Git and Python 3.10 or later are required.
 
 Updates follow commit changes, including commits that leave the plugin version
-unchanged. The command replaces the current plugin through one symlink, preserves
-relative references, and removes links for deleted skills. A failed fetch leaves
-the installed skills available. An existing unmanaged skill causes an error.
-Concurrent invocations sharing the state directory run one at a time.
+unchanged. Each runtime has one `deepstack` entry that points to a complete,
+immutable plugin directory. An atomic replacement updates that entry and preserves
+relative references. Each runtime retains its own revision and installation
+receipt. Synchronizing another runtime leaves existing installations in place.
+
+A failed fetch leaves the installed skills available. An interrupted update
+leaves each runtime on either the previous or the new complete directory. Rerun
+the command to finish any remaining runtimes. Old revisions remain available to
+other runtimes and readers. An existing unmanaged installation or skill causes
+an error. Concurrent invocations sharing the state directory run one at a time.
+
+Earlier installations with individual skill links migrate when that runtime
+synchronizes. The command publishes the complete directory before removing its
+older links. It preserves the legacy `current` pointer for runtimes that have
+not migrated. Installation receipts live under the state directory's
+`installations` directory, with a separate file for each runtime path.
 
 To refresh skills automatically at environment startup, configure the environment's
 setup and maintenance commands to invoke this script before starting the agent.
